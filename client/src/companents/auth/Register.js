@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const [InfoData, setInfoData] = useState({
-    fname: '',
-    lname: '',
-    email: '',
-    pass: '',
+    fname: "",
+    lname: "",
+    email: "",
+    pass: "",
   });
 
   const { fname, lname, email, pass } = InfoData;
@@ -19,8 +19,8 @@ const Register = () => {
   //register api Hit
   const clickHandler = async () => {
     const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         firstName: InfoData.fname,
         lastName: InfoData.lname,
@@ -29,7 +29,10 @@ const Register = () => {
       }),
     };
 
-    const res = await fetch('http://localhost:5000/register/', requestOptions);
+    const res = await fetch(
+      "https://woodo-ecom.herokuapp.com/register/",
+      requestOptions
+    );
     const data = await res.json();
 
     if (
@@ -37,7 +40,7 @@ const Register = () => {
       data === '"lastName" is not allowed to be empty' ||
       data === '"email" is not allowed to be empty' ||
       data === '"password" length must be at least 6 characters long' ||
-      data === 'Email already exists' ||
+      data === "Email already exists" ||
       data === '"email" must be a valid email' ||
       data === '"password" is not allowed to be empty'
     ) {
@@ -45,8 +48,8 @@ const Register = () => {
       return;
     }
 
-    alert('Registration successful');
-    window.location.href = 'http://localhost:3000/login';
+    alert("Registration successful");
+    window.location.href = "http://localhost:3000/login";
   };
 
   return (
@@ -56,56 +59,56 @@ const Register = () => {
         <Section>
           <span>First Name: </span>
           <input
-            type='text'
-            id='fname'
+            type="text"
+            id="fname"
             value={fname}
             onChange={(e) => {
               onChange(e);
             }}
-            name='fname'
-            autoComplete='off'
+            name="fname"
+            autoComplete="off"
             required
           />
         </Section>
         <Section>
           <span>Last Name: </span>
           <input
-            type='text'
-            id='fname'
-            name='lname'
+            type="text"
+            id="fname"
+            name="lname"
             value={lname}
             onChange={(e) => {
               onChange(e);
             }}
-            autoComplete='off'
+            autoComplete="off"
             required
           />
         </Section>
         <Section>
           <span>Email: </span>
           <input
-            type='email'
-            id='fname'
-            name='email'
+            type="email"
+            id="fname"
+            name="email"
             value={email}
             onChange={(e) => {
               onChange(e);
             }}
-            autoComplete='off'
+            autoComplete="off"
             required
           />
         </Section>
         <Section>
           <span>Password: </span>
           <input
-            type='password'
-            id='fname'
+            type="password"
+            id="fname"
             value={pass}
             onChange={(e) => {
               onChange(e);
             }}
-            name='pass'
-            autoComplete='off'
+            name="pass"
+            autoComplete="off"
             required
           />
         </Section>
@@ -114,7 +117,7 @@ const Register = () => {
         </Section>
         <SectionList>
           <div>
-            Already signed In?<Link to='/login'>Click here</Link>
+            Already signed In?<Link to="/login">Click here</Link>
           </div>
         </SectionList>
       </Contain>

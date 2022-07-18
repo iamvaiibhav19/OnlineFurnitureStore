@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import Navbar from './companents/Navbar';
-import Poster from './companents/Poster';
-import AboutUs from './companents/AboutUs';
-import Furnitures from './companents/furnitures/Furnitures';
-import Footer from './companents/Footer';
-import Copyrights from './companents/Copyrights';
-import Register from './companents/auth/Register';
-import Login from './companents/auth/Login';
-import Profile from './companents/profile/Profile';
-import Cart from './companents/cart/Cart';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import ScrollToTop from './companents/utils/ScrollToTop';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import Navbar from "./companents/Navbar";
+import Poster from "./companents/Poster";
+import AboutUs from "./companents/AboutUs";
+import Furnitures from "./companents/furnitures/Furnitures";
+import Footer from "./companents/Footer";
+import Copyrights from "./companents/Copyrights";
+import Register from "./companents/auth/Register";
+import Login from "./companents/auth/Login";
+import Profile from "./companents/profile/Profile";
+import Cart from "./companents/cart/Cart";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import ScrollToTop from "./companents/utils/ScrollToTop";
 
 function App() {
   const [products, setProducts] = useState([]);
   const [token, setToken] = useState({
-    value: '',
+    value: "",
   });
 
   const [user, setUser] = useState({});
@@ -29,24 +29,27 @@ function App() {
 
   const placeOrder = async () => {
     const resOptions = {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'auth-token': token.value,
+        "Content-Type": "application/json",
+        "auth-token": token.value,
       },
     };
 
-    const res = await fetch('http://localhost:5000/order', resOptions);
+    const res = await fetch(
+      "https://woodo-ecom.herokuapp.com/order",
+      resOptions
+    );
     const data = await res.json();
 
-    if (data === 'Please select a address') {
+    if (data === "Please select a address") {
       alert(
-        'Please select a address. Now you will be redirected to Profile section!'
+        "Please select a address. Now you will be redirected to Profile section!"
       );
-      window.location.href = 'http://localhost:3000/profile';
+      window.location.href = "http://localhost:3000/profile";
       return;
     }
-    alert('We Have recieved your order successfully ✔️✔️✔️');
+    alert("We Have recieved your order successfully ✔️✔️✔️");
     setCart(data.cart);
     console.log(data);
   };
@@ -54,14 +57,17 @@ function App() {
   //delete item from cart
   const deleteFromCart = async (id) => {
     const resOptions = {
-      method: 'DELETE',
+      method: "DELETE",
       headers: {
-        'Content-Type': 'application/json',
-        'auth-token': token.value,
+        "Content-Type": "application/json",
+        "auth-token": token.value,
       },
     };
 
-    const res = await fetch(`http://localhost:5000/cart/${id}`, resOptions);
+    const res = await fetch(
+      `https://woodo-ecom.herokuapp.com/cart/${id}`,
+      resOptions
+    );
     const data = await res.json();
     setCart(data.cart);
   };
@@ -69,36 +75,42 @@ function App() {
   //add item to cart
   const addToCart = async (data) => {
     const resOptions = {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'auth-token': token.value,
+        "Content-Type": "application/json",
+        "auth-token": token.value,
       },
       body: JSON.stringify({
         code: data,
       }),
     };
 
-    const res = await fetch('http://localhost:5000/cart', resOptions);
+    const res = await fetch(
+      "https://woodo-ecom.herokuapp.com/cart",
+      resOptions
+    );
     const data1 = await res.json();
     setCart(data1.cart);
-    alert('Item Added to your Cart');
+    alert("Item Added to your Cart");
   };
 
   //get User data from token
 
   const getTokenData = async () => {
-    const value = localStorage.getItem('token');
+    const value = localStorage.getItem("token");
     if (value) {
       setToken({ ...token, value: value });
       const resOptions = {
-        method: 'GET',
+        method: "GET",
         headers: {
-          'auth-token': value,
+          "auth-token": value,
         },
       };
 
-      const res = await fetch('http://localhost:5000/user', resOptions);
+      const res = await fetch(
+        "https://woodo-ecom.herokuapp.com/user",
+        resOptions
+      );
       const data = await res.json();
       if (data) {
         setUser(data);
@@ -113,12 +125,15 @@ function App() {
   //address delete handle
   const addressDelete = async (id) => {
     const resOptions = {
-      method: 'DELETE',
+      method: "DELETE",
       headers: {
-        'auth-token': token.value,
+        "auth-token": token.value,
       },
     };
-    const res = await fetch(`http://localhost:5000/address/${id}`, resOptions);
+    const res = await fetch(
+      `https://woodo-ecom.herokuapp.com/address/${id}`,
+      resOptions
+    );
     const data = await res.json();
     setAddress(data.address);
   };
@@ -126,10 +141,10 @@ function App() {
   //add address handler
   const addAddress = async (formdata) => {
     const resOptions = {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'auth-token': token.value,
+        "Content-Type": "application/json",
+        "auth-token": token.value,
       },
       body: JSON.stringify({
         flat: parseInt(formdata.flat),
@@ -138,7 +153,10 @@ function App() {
         isDefault: 0,
       }),
     };
-    const res = await fetch('http://localhost:5000/address', resOptions);
+    const res = await fetch(
+      "https://woodo-ecom.herokuapp.com/address",
+      resOptions
+    );
     const data = await res.json();
     if (
       data === '"flat" must be a number' ||
@@ -156,12 +174,15 @@ function App() {
 
   const addressDefaultChange = async (id) => {
     const resOptions = {
-      method: 'PUT',
+      method: "PUT",
       headers: {
-        'auth-token': token.value,
+        "auth-token": token.value,
       },
     };
-    const res = await fetch(`http://localhost:5000/address/${id}`, resOptions);
+    const res = await fetch(
+      `https://woodo-ecom.herokuapp.com/address/${id}`,
+      resOptions
+    );
     const data = await res.json();
     setAddress(data.address);
   };
@@ -169,18 +190,18 @@ function App() {
   //logout feature
 
   const logOutHandler = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     setUser({});
     setCart([]);
     setAddress([]);
     setOrders([]);
     setIslogged(false);
-    window.location.href = 'http://localhost:3000/';
+    window.location.href = "http://localhost:3000/";
   };
 
   //get products list
   useEffect(async () => {
-    const res = await fetch('http://localhost:5000/products/');
+    const res = await fetch("https://woodo-ecom.herokuapp.com/products/");
     const data = await res.json();
     setProducts(data);
     getTokenData();
@@ -189,10 +210,10 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className='App'>
+      <div className="App">
         <Navbar user={user} logout={logOutHandler} islogged={islogged} />
         <Switch>
-          <Route path='/' exact>
+          <Route path="/" exact>
             <Poster />
             <Furnitures
               products={products}
@@ -202,7 +223,7 @@ function App() {
             <AboutUs />
           </Route>
           {islogged ? (
-            <Route path='/profile' exact>
+            <Route path="/profile" exact>
               <Profile
                 user={user}
                 orders={orders}
@@ -213,14 +234,14 @@ function App() {
               />
             </Route>
           ) : (
-            ''
+            ""
           )}
 
-          <Route path='/aboutus' exact>
+          <Route path="/aboutus" exact>
             <AboutUs />
           </Route>
 
-          <Route path='/furnitures' exact>
+          <Route path="/furnitures" exact>
             <Furnitures
               products={products}
               islogged={islogged}
@@ -228,7 +249,7 @@ function App() {
             />
           </Route>
 
-          <Route path='/cart' exact>
+          <Route path="/cart" exact>
             <Cart
               cart={cart}
               products={products}
@@ -237,11 +258,11 @@ function App() {
             />
           </Route>
 
-          <Route path='/login'>
+          <Route path="/login">
             <Login />
           </Route>
 
-          <Route path='/register'>
+          <Route path="/register">
             <Register />
           </Route>
         </Switch>

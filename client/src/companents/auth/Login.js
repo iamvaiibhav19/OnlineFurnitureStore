@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [infoData, setInfoData] = useState({
-    email: '',
-    pass: '',
+    email: "",
+    pass: "",
   });
 
   const { email, pass } = infoData;
@@ -16,19 +16,22 @@ const Login = () => {
 
   const clickHandler = async () => {
     const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: infoData.email,
         password: infoData.pass,
       }),
     };
 
-    const res = await fetch('http://localhost:5000/login', requestOptions);
+    const res = await fetch(
+      "https://woodo-ecom.herokuapp.com/login",
+      requestOptions
+    );
     const data = await res.json();
 
     if (
-      data === 'Invalid Credentials' ||
+      data === "Invalid Credentials" ||
       data === '"password" length must be at least 6 characters long' ||
       data === '"email" must be a valid email' ||
       data === '"password" is not allowed to be empty'
@@ -37,9 +40,9 @@ const Login = () => {
       return;
     }
 
-    localStorage.setItem('token', data);
-    alert('Login successful');
-    window.location.href = 'http://localhost:3000/';
+    localStorage.setItem("token", data);
+    alert("Login successful");
+    window.location.href = "http://localhost:3000/";
   };
 
   return (
@@ -50,29 +53,29 @@ const Login = () => {
         <Section>
           <span>Email: </span>
           <input
-            type='email'
-            id='fname'
-            name='email'
+            type="email"
+            id="fname"
+            name="email"
             value={email}
-            autoComplete='off'
+            autoComplete="off"
             onChange={(e) => {
               onChange(e);
             }}
-            autocomplete='off'
+            autocomplete="off"
             required
           />
         </Section>
         <Section>
           <span>Password: </span>
           <input
-            type='password'
-            id='fname'
+            type="password"
+            id="fname"
             value={pass}
-            autoComplete='off'
+            autoComplete="off"
             onChange={(e) => {
               onChange(e);
             }}
-            name='pass'
+            name="pass"
             required
           />
         </Section>
@@ -81,7 +84,7 @@ const Login = () => {
         </Section>
         <SectionList>
           <div>
-            New User?<Link to='/register'>Click here</Link>
+            New User?<Link to="/register">Click here</Link>
           </div>
         </SectionList>
       </Contain>

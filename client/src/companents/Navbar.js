@@ -1,20 +1,20 @@
-import React from 'react';
-import styled from 'styled-components';
-import PersonIcon from '@material-ui/icons/Person';
-import LocalMallIcon from '@material-ui/icons/LocalMall';
-import { Link } from 'react-router-dom';
+import React from "react";
+import styled from "styled-components";
+import PersonIcon from "@material-ui/icons/Person";
+import LocalMallIcon from "@material-ui/icons/LocalMall";
+import { Link } from "react-router-dom";
 
 const Navbar = ({ user, logout, islogged }) => {
   return (
     <Container>
-      <Link to='/'>
-        <img src='/images/logo.png' alt='woodo' />
+      <Link to="/">
+        <img src="/images/logo.png" alt="woodo" />
       </Link>
 
       <Menu>
-        <Link to='/aboutus'>about</Link>
-        <Link to='/furnitures'>Furnitures</Link>
-        {islogged ? <Link to='/profile'>Profile</Link> : ''}
+        <Link to="/aboutus">About Us</Link>
+        <Link to="/furnitures">Furnitures</Link>
+        {islogged ? <Link to="/profile">Profile</Link> : ""}
       </Menu>
 
       <Authenticate>
@@ -22,7 +22,7 @@ const Navbar = ({ user, logout, islogged }) => {
         {user.firstName ? (
           <div onClick={logout}>Hi,{user.firstName}</div>
         ) : (
-          <Link to='/register'>
+          <Link to="/register">
             <div>Login / Register</div>
           </Link>
         )}
@@ -30,11 +30,11 @@ const Navbar = ({ user, logout, islogged }) => {
 
       <Cart>
         {islogged ? (
-          <Link to='/Cart'>
+          <Link to="/Cart">
             <LocalMallIcon />
           </Link>
         ) : (
-          ''
+          ""
         )}
       </Cart>
     </Container>

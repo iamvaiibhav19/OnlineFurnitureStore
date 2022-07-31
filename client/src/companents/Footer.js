@@ -1,18 +1,18 @@
-import React from 'react';
-import styled from 'styled-components';
-import MailIcon from '@material-ui/icons/Mail';
-import PhoneIcon from '@material-ui/icons/Phone';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
-import { Link } from 'react-router-dom';
+import React from "react";
+import styled from "styled-components";
+import MailIcon from "@material-ui/icons/Mail";
+import PhoneIcon from "@material-ui/icons/Phone";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
     <Wrap>
       <Menu>
-        <Link to='/'>Home</Link>
-        <Link to='/aboutus'>about</Link>
-        <Link to='/furnitures'>Furnitures</Link>
-        <Link to='/profile'>Profile</Link>
+        <Link to="/">Home</Link>
+        <Link to="/aboutus">About Us</Link>
+        <Link to="/furnitures">Furnitures</Link>
+        <Link to="/profile">Profile</Link>
       </Menu>
       <ContactInfo>
         <InfoBox>

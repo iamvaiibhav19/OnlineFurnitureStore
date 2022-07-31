@@ -1,10 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const Copyrights = () => {
   return (
     <Wrap>
-      <Info>Copyright &copy; 2021 All Rights Reserved by Yash Patil</Info>
+      <Info>Copyright &copy; 2021 All Rights Reserved by Vaibhav Magar</Info>
     </Wrap>
   );
 };

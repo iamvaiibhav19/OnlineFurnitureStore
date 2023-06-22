@@ -49,7 +49,10 @@ const Register = () => {
     }
 
     alert("Registration successful");
-    window.location.href = "http://localhost:3000/login";
+
+    //redirect from "/register" to "/"
+    window.location.href = "https://online-furniture-store.vercel.app/";
+    
   };
 
   return (

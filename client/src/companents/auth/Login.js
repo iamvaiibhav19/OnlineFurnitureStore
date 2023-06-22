@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import {useHistory} from 'react-router-dom';
 
 const Login = () => {
+  const history = useHistory();
   const [infoData, setInfoData] = useState({
     email: "",
     pass: "",
@@ -42,7 +44,8 @@ const Login = () => {
 
     localStorage.setItem("token", data);
     alert("Login successful");
-    window.location.href = "http://localhost:3000/";
+    // Redirect to '/'
+    window.location.href = "https://online-furniture-store.vercel.app/";
   };
 
   return (

@@ -25,7 +25,7 @@ const Login = () => {
     };
 
     const res = await fetch(
-      "https://woodo-ecom.herokuapp.com/login",
+      "https://woodo-onlinefurniturestore.onrender.com/login",
       requestOptions
     );
     const data = await res.json();

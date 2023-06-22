@@ -30,7 +30,7 @@ const Register = () => {
     };
 
     const res = await fetch(
-      "https://woodo-ecom.herokuapp.com/register/",
+      "https://woodo-onlinefurniturestore.onrender.com/register/",
       requestOptions
     );
     const data = await res.json();

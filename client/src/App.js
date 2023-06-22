@@ -37,7 +37,7 @@ function App() {
     };
 
     const res = await fetch(
-      "https://woodo-ecom.herokuapp.com/order",
+      "https://woodo-onlinefurniturestore.onrender.com/order",
       resOptions
     );
     const data = await res.json();
@@ -65,7 +65,7 @@ function App() {
     };
 
     const res = await fetch(
-      `https://woodo-ecom.herokuapp.com/cart/${id}`,
+      `https://woodo-onlinefurniturestore.onrender.com/cart/${id}`,
       resOptions
     );
     const data = await res.json();
@@ -86,7 +86,7 @@ function App() {
     };
 
     const res = await fetch(
-      "https://woodo-ecom.herokuapp.com/cart",
+      "https://woodo-onlinefurniturestore.onrender.com/cart",
       resOptions
     );
     const data1 = await res.json();
@@ -108,7 +108,7 @@ function App() {
       };
 
       const res = await fetch(
-        "https://woodo-ecom.herokuapp.com/user",
+        "https://woodo-onlinefurniturestore.onrender.com/user",
         resOptions
       );
       const data = await res.json();
@@ -131,7 +131,7 @@ function App() {
       },
     };
     const res = await fetch(
-      `https://woodo-ecom.herokuapp.com/address/${id}`,
+      `https://woodo-onlinefurniturestore.onrender.com/address/${id}`,
       resOptions
     );
     const data = await res.json();
@@ -154,7 +154,7 @@ function App() {
       }),
     };
     const res = await fetch(
-      "https://woodo-ecom.herokuapp.com/address",
+      "https://woodo-onlinefurniturestore.onrender.com/address",
       resOptions
     );
     const data = await res.json();
@@ -180,7 +180,7 @@ function App() {
       },
     };
     const res = await fetch(
-      `https://woodo-ecom.herokuapp.com/address/${id}`,
+      `https://woodo-onlinefurniturestore.onrender.com/address/${id}`,
       resOptions
     );
     const data = await res.json();
@@ -201,7 +201,7 @@ function App() {
 
   //get products list
   useEffect(async () => {
-    const res = await fetch("https://woodo-ecom.herokuapp.com/products/");
+    const res = await fetch("https://woodo-onlinefurniturestore.onrender.com/products/");
     const data = await res.json();
     setProducts(data);
     getTokenData();
